@@ -1,4 +1,5 @@
-@GrabResolver(name="gexcelparser", root="https://github.com/sorabito/gexcelparser/raw/master/repository/")
+@GrabResolver(name="bintray-gexcelapi", root="http://dl.bintray.com/nobeans/maven/")
+@GrabResolver(name="github-gexcelparser", root="https://github.com/sorabito/gexcelparser/raw/master/repository/")
 @Grab("com.sorabito:gexcelparser:1.0.0")
 
 import com.sorabito.gexcelparser.GExcelParser
