@@ -2,8 +2,8 @@ package com.sorabito.gexcelparser
 
 
 class PropertyMapper {
-    def values = []
-    def columns = [:]
+    List values = []
+    Map columns = [:]
 
     def propertyMissing(String name) {
         def index = columns[name]

@@ -1,5 +1,6 @@
 package com.sorabito.gexcelparser
 
+import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.ss.usermodel.Cell
 import org.apache.poi.ss.usermodel.FormulaEvaluator
 import org.apache.poi.ss.usermodel.Sheet
@@ -9,7 +10,9 @@ import org.jggug.kobo.gexcelapi.GExcel
 
 
 class GExcelParser {
-    def book
+    static final int MAX_COLUMNS = 16384 // Excel2007-
+
+    Workbook book
     FormulaEvaluator formulaEvaluator
 
 
@@ -31,30 +34,30 @@ class GExcelParser {
         return inst
     }
 
-    def openBook(InputStream is) {
+    void openBook(InputStream is) {
         this.book = GExcel.open(is)
         this.prepare()
     }
 
-    def openBook(File file) {
+    void openBook(File file) {
         this.book = GExcel.open(file)
         this.prepare()
     }
 
-    def openBook(String filePath) {
+    void openBook(String filePath) {
         this.book = GExcel.open(filePath)
         this.prepare()
     }
 
-    def prepare() {
+    void prepare() {
         this.prepareFormulaEvaluatorFor()
     }
 
-    def prepareFormulaEvaluatorFor() {
+    void prepareFormulaEvaluatorFor() {
         this.formulaEvaluator = this.book.getCreationHelper().createFormulaEvaluator()
     }
 
-    def parseSheet(String sheetName) {
+    List<PropertyMapper> parseSheet(String sheetName) {
         String stopLabel = this.findStopColumnLabel(sheetName)
         if (stopLabel == null) {
             throw new Exception('header not found')
@@ -63,11 +66,11 @@ class GExcelParser {
         return this.parseSheet(sheetName, 'A', stopLabel, 1, 2)
     }
 
-    def findStopColumnLabel(String sheetName) {
+    String findStopColumnLabel(String sheetName) {
         Sheet sheet = this.book."${sheetName}"
 
 
-        def firstEmptyIndex = (1..16384).find { int idx ->
+        def firstEmptyIndex = (1 .. MAX_COLUMNS).find { int idx ->
             def columnLabel = CLU.columnLabel(idx)
             def value = sheet."${columnLabel}1".value?.toString()
 
@@ -78,7 +81,7 @@ class GExcelParser {
         return CLU.columnLabel(firstEmptyIndex - 1)
     }
 
-    def parseSheet(String sheetName, String startColumnLabel, String stopColumnLabel, int headerRow, int firstDataRow) {
+    List<PropertyMapper> parseSheet(String sheetName, String startColumnLabel, String stopColumnLabel, int headerRow, int firstDataRow) {
         Sheet sheet = this.book."${sheetName}"
         def columns = this.parseHeaderRow(sheet, startColumnLabel, stopColumnLabel, headerRow)
 
