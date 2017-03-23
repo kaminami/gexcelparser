@@ -1,9 +1,12 @@
 package com.sorabito.gexcelparser
 
-import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.ss.usermodel.Cell
+import org.apache.poi.ss.usermodel.DateUtil
+import org.apache.poi.ss.usermodel.DataFormatter
 import org.apache.poi.ss.usermodel.FormulaEvaluator
 import org.apache.poi.ss.usermodel.Sheet
+import org.apache.poi.ss.usermodel.Workbook
+
 import org.jggug.kobo.gexcelapi.CellLabelUtils as CLU
 import org.jggug.kobo.gexcelapi.CellRange
 import org.jggug.kobo.gexcelapi.GExcel
@@ -124,10 +127,49 @@ class GExcelParser {
         def values = []
 
         cells.first().eachWithIndex { Cell cell, int idx ->
-            values << this.formulaEvaluator.evaluateInCell(cell).value
+            values << this.extractCellValue(cell)
         }
 
         def mapper = new PropertyMapper([columns:columns, values:values])
         return mapper
+    }
+
+    def extractCellValue(Cell cell) {
+        this.formulaEvaluator.evaluateInCell(cell).value
+
+
+        switch(cell.getCellType()) {
+            case Cell.CELL_TYPE_BLANK:
+                return null
+
+            case Cell.CELL_TYPE_STRING:
+                return cell.getRichStringCellValue().getString()
+
+            case Cell.CELL_TYPE_BOOLEAN:
+                return cell.getBooleanCellValue()
+
+            case Cell.CELL_TYPE_NUMERIC:
+                return this.extractNumericCellValue(cell)
+
+            case Cell.CELL_TYPE_FORMULA:
+                return this.formulaEvaluator.evaluateInCell(cell).value
+
+            default:
+                return null;
+        }
+    }
+
+    def extractNumericCellValue(Cell cell) {
+        // date
+        if (DateUtil.isCellDateFormatted(cell)) {
+            return cell.getDateCellValue()
+        }
+
+        // double or int
+        DataFormatter formatter = new DataFormatter()
+        String retValue = formatter.formatCellValue(cell)
+
+        if (retValue.contains('.')) { return Double.parseDouble(retValue) }
+        return Integer.parseInt(retValue)
     }
 }
