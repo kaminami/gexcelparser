@@ -9,6 +9,6 @@ def parser = GExcelParser.open('example.xlsx')
 List<PropertyMapper> mapperList = parser.parseSheet('Sheet1')
 
 mapperList.each { mapper ->
-    println "${mapper.column1}: ${mapper.column2}"
+    println "${mapper.column1} : ${mapper.column2} : ${mapper.column3} : ${mapper.column4}"
 }
 
