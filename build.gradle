@@ -1,7 +1,6 @@
 apply plugin: "groovy"
 apply plugin: 'maven'
 
-
 repositories {
     jcenter()
 
@@ -29,7 +28,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '1.0.0'
+            pom.version = '1.0.1'
             pom.groupId = 'com.sorabito'
             pom.artifactId = 'gexcelparser'
         }
