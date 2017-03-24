@@ -27,7 +27,7 @@ repositories {
 
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.7'
-    compile 'com.sorabito:gexcelparser:1.0.0'
+    compile 'com.sorabito:gexcelparser:1.0.2'
 }
 ```
 

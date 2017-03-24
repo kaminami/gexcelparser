@@ -165,11 +165,11 @@ class GExcelParser {
             return cell.getDateCellValue()
         }
 
-        // double or int
+        // double or long
         DataFormatter formatter = new DataFormatter()
         String retValue = formatter.formatCellValue(cell)
 
         if (retValue.contains('.')) { return Double.parseDouble(retValue) }
-        return Integer.parseInt(retValue)
+        return Long.parseLong(retValue)
     }
 }
