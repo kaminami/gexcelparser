@@ -14,7 +14,7 @@ apply plugin: 'groovy'
 repositories {
     mavenCentral()
 
-    // gexcelparser
+    // gexcelapi
     maven {
         url 'https://github.com/kaminami/gexcelapi/raw/master/repository'
     }
