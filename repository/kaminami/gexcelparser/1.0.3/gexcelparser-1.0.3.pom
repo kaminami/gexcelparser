@@ -27,7 +27,7 @@
     <dependency>
       <groupId>kaminami</groupId>
       <artifactId>gexcelapi</artifactId>
-      <version>0.4.1</version>
+      <version>0.6</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
