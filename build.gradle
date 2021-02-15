@@ -2,7 +2,7 @@ apply plugin: "groovy"
 apply plugin: 'maven'
 
 repositories {
-    jcenter()
+    mavenCentral()
 
     maven {
         // gexcelapi
@@ -28,10 +28,9 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '1.0.2'
-            pom.groupId = 'com.sorabito'
+            pom.version = '1.0.3'
+            pom.groupId = 'kaminami'
             pom.artifactId = 'gexcelparser'
         }
     }
 }
-

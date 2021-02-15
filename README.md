@@ -12,7 +12,7 @@ Excelシートのデータを、[GroovyCSV](https://github.com/xlson/groovycsv)�
 apply plugin: 'groovy'
 
 repositories {
-    jcenter()
+    mavenCentral()
 
     // gexcelapi
     maven {
@@ -21,13 +21,13 @@ repositories {
     
     // gexcelparser
     maven { 
-        url 'https://github.com/sorabito/gexcelparser/raw/master/repository' 
+        url 'https://github.com/kaminami/gexcelparser/raw/master/repository' 
     }
 }
 
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.7'
-    compile 'com.sorabito:gexcelparser:1.0.2'
+    compile 'com.sorabito:gexcelparser:1.0.3'
 }
 ```
 
