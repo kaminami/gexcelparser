@@ -9,7 +9,7 @@
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
-      <version>2.4.7</version>
+      <version>2.4.21</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -19,15 +19,15 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.jggug.kobo</groupId>
-      <artifactId>gexcelapi</artifactId>
-      <version>0.4</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
       <version>3.10.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>kaminami</groupId>
+      <artifactId>gexcelapi</artifactId>
+      <version>0.4.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

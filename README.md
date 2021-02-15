@@ -14,11 +14,11 @@ apply plugin: 'groovy'
 repositories {
     mavenCentral()
 
-    // gexcelapi
+    // gexcelparser
     maven {
-        url 'http://dl.bintray.com/nobeans/maven'
+        url 'https://github.com/kaminami/gexcelapi/raw/master/repository'
     }
-    
+
     // gexcelparser
     maven { 
         url 'https://github.com/kaminami/gexcelparser/raw/master/repository' 

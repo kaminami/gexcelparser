@@ -4,18 +4,17 @@ apply plugin: 'maven'
 repositories {
     mavenCentral()
 
+    // gexcelapi
     maven {
-        // gexcelapi
-        url 'http://dl.bintray.com/nobeans/maven'
+        url 'https://github.com/kaminami/gexcelapi/raw/master/repository'
     }
 }
 
 dependencies {
-    compile "org.codehaus.groovy:groovy-all:2.4.7"
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.21'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.22'
-
-    compile 'org.jggug.kobo:gexcelapi:0.4'
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.10.1'
+    compile 'kaminami:gexcelapi:0.4.1'
 
     testCompile "junit:junit:4.12"
 }
